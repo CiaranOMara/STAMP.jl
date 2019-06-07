@@ -25,7 +25,7 @@ const machine = (function ()
             h4 = re"[A-Za-z0-9_\-]*"
             # h4 = re"[!-~]*"
 
-            re.cat(h1, space, h2,space, h3, space, h4)
+            cat(h1, space, h2,space, h3, space, h4)
         end
         header.actions[:enter] = [:mark]
         header.actions[:exit] = [:record_header]
@@ -42,14 +42,14 @@ const machine = (function ()
             nucleotide.actions[:enter] = [:mark]
             nucleotide.actions[:exit] = [:record_pfm_nucleotide]
 
-            re.rep1(re.cat(position, space, frequency, space, frequency, space, frequency, space, frequency, space, nucleotide, newline))
+            rep1(cat(position, space, frequency, space, frequency, space, frequency, space, frequency, space, nucleotide, newline))
         end
 
-        re.cat("DE", space, header, newline, pfm, "XX", newline)
+        cat("DE", space, header, newline, pfm, "XX", newline)
     end
     record.actions[:exit] = [:record]
 
-    stamp = re.rep(cat(record, rep(newline)))
+    stamp = rep(cat(record, rep(newline)))
 
     Automa.compile(stamp)
 end)()
