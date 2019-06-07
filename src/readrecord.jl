@@ -21,7 +21,7 @@ const machine = (function ()
             h1 = re"[A-Za-z0-9_\-]*"
             # h1 = re"[!-~]*"
             h2 = re"[0-9\.]*"
-            h3 = re"[0-9]*"
+            h3 = cat(opt("-"),re"[0-9]*")
             h4 = re"[A-Za-z0-9_\-]*"
             # h4 = re"[!-~]*"
 

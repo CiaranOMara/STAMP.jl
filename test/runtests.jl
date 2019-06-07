@@ -35,6 +35,16 @@ XX
                 [176 1511 126 282 463 22 11]
             ]
         @test STAMP.sequence(record) == dna"ATGCAAA"
+
+        # Check negative.
+        record = STAMP.Record("""
+            DE test 9.59 -19 k8_c740
+            1 7 76 657 0 G
+            XX
+            """)
+        @test STAMP.header(record) == "test 9.59 -19 k8_c740"
+
+
     end # testset
 
     @testset "Reader" begin
