@@ -1,0 +1,16 @@
+name = "STAMP"
+uuid = "f5220ae0-8811-11e9-35c7-9314bae6f8ff"
+authors = ["Ciarán O'Mara <Ciaran.OMara@utas.edu.au>"]
+version = "0.1.0"
+
+[deps]
+Automa = "67c07d97-cdcb-5c2c-af73-a7f9c32a568b"
+BioGenerics = "47718e42-2ac5-11e9-14af-e5595289c2ea"
+BioSequences = "7e6ae17a-c86d-528c-b3b9-7f778a29fe59"
+TranscodingStreams = "3bb67fe8-82b1-5028-8e26-92a6c54297fa"
+
+[extras]
+Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
+
+[targets]
+test = ["Test"]
