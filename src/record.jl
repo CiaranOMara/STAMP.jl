@@ -1,19 +1,27 @@
-mutable struct Record
+mutable struct Record{S<:BioSequence}
     header::Union{Missing, String}
     frequencies::Union{Missing, AbstractMatrix}
-    sequence::Union{Missing, BioSequence}
+    sequence::Union{Missing, S}
+end
+
+function Record{S}() where S<:BioSequence
+    return Record{S}(missing, missing, missing)
 end
 
 function Record()
-    return Record(missing, missing, missing)
+    return Record{LongDNASeq}()
+end
+
+function Record{S}(data::Vector{UInt8}) where S<:BioSequence
+    return convert(Record{S}, data)
 end
 
 function Record(data::Vector{UInt8})
-    return convert(Record, data)
+    return Record{LongDNASeq}(data)
 end
 
-function Base.convert(::Type{Record}, data::Vector{UInt8})
-    record = Record()
+function Base.convert(el::Type{R}, data::Vector{UInt8}) where R<:Record
+    record = el()
     stream = TranscodingStreams.NoopStream(IOBuffer(data))
     cs, linenum, found = readrecord!(stream, record, (1, 1))
     if !found || !allspace(stream)
@@ -50,7 +58,7 @@ function Base.show(io::IO, record::Record)
     end
 end
 
-function initialize!(record::Record)
+function empty!(record::Record)
     record.header = missing
     record.frequencies = missing
     record.sequence = missing

@@ -95,7 +95,7 @@ initcode = quote
     frequencies = Int64[]
     sequence = LongDNASeq()
 
-    initialize!(record)
+    # initialize!(record)
 
     cs, linenum = state
 end
