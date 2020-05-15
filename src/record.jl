@@ -1,7 +1,7 @@
 mutable struct Record
     header::Union{Missing, String}
     frequencies::Union{Missing, AbstractMatrix}
-    sequence::Union{Missing, Sequence}
+    sequence::Union{Missing, BioSequence}
 end
 
 function Record()

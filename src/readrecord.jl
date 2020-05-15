@@ -75,7 +75,7 @@ const actions = Dict(
         end,
     :record_pfm_nucleotide => quote
             str = String(data[@markpos():p - 1])
-            sequence = sequence * DNASequence(str)
+            sequence = sequence * LongDNASeq(str)
             @debug "nucleotide" str
         end,
     :record => quote
@@ -93,7 +93,7 @@ initcode = quote
 
     posnum = 0
     frequencies = Int64[]
-    sequence = Sequence()
+    sequence = LongDNASeq()
 
     initialize!(record)
 
